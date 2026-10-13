@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://yy2tmxnuqn4d"]
+
+[ext_resource type="Texture2D" uid="uid://c6a8cvl2f6x4k" path="res://sprites/tank.png" id="1_33chc"]
+[ext_resource type="Script" path="res://tank.gd" id="2_85vu7"]
+[ext_resource type="Script" path="res://scripts/bullet_spawner.gd" id="3_vpirl"]
+[ext_resource type="PackedScene" uid="uid://b8bfoigal0isx" path="res://bullet.tscn" id="4_krjow"]
+
+[node name="Tank" type="Sprite2D"]
+position = Vector2(142, 210)
+scale = Vector2(6, 6)
+texture = ExtResource("1_33chc")
+script = ExtResource("2_85vu7")
+
+[node name="RotateTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="BulletSpawner" type="Sprite2D" parent="."]
+position = Vector2(4, 0)
+script = ExtResource("3_vpirl")
+Bullet = ExtResource("4_krjow")
+
+[connection signal="timeout" from="RotateTimer" to="." method="_on_rotate_timer_timeout"]
