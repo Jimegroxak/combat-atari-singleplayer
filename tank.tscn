@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://yy2tmxnuqn4d"]
+[gd_scene load_steps=7 format=3 uid="uid://yy2tmxnuqn4d"]
 
 [ext_resource type="Texture2D" uid="uid://c6a8cvl2f6x4k" path="res://sprites/tank.png" id="1_33chc"]
 [ext_resource type="Script" path="res://tank.gd" id="2_85vu7"]
 [ext_resource type="Script" path="res://scripts/bullet_spawner.gd" id="3_vpirl"]
 [ext_resource type="PackedScene" uid="uid://b8bfoigal0isx" path="res://bullet.tscn" id="4_krjow"]
+[ext_resource type="Script" path="res://character_body_2d.gd" id="5_ed8qq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig2c7"]
+size = Vector2(6, 7)
 
 [node name="Tank" type="Sprite2D"]
 position = Vector2(142, 210)
@@ -19,4 +23,13 @@ position = Vector2(4, 0)
 script = ExtResource("3_vpirl")
 Bullet = ExtResource("4_krjow")
 
+[node name="Area2D" type="Area2D" parent="."]
+disable_mode = 2
+script = ExtResource("5_ed8qq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_ig2c7")
+
 [connection signal="timeout" from="RotateTimer" to="." method="_on_rotate_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

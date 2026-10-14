@@ -17,6 +17,7 @@ func handle_shot():
 
 func shoot():
 	var b = Bullet.instantiate()
+	b.tank = owner
 	#b.get_node("Sprite2D").texture = bullet_texture
 	b.set_collision_layer_value(owner.player_id + 2, true)
 	owner.owner.add_child(b)

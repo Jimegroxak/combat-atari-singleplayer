@@ -3,7 +3,9 @@ extends Sprite2D
 @export var player_id = 1
 
 var speed = 55 # should move across screen in about 19 seconds
+var real_vel
 var screen_size # Size of the game window
+var d
 
 var can_turn = true
 
@@ -13,6 +15,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	d = delta
 	handle_movement(delta)
 	handle_rotation(delta)
 
@@ -23,7 +26,7 @@ func handle_movement(delta: float):
 		velocity = 1
 		
 	if velocity > 0:
-		var real_vel = Vector2(cos(global_rotation), sin(global_rotation)).normalized() * speed
+		real_vel = Vector2(cos(global_rotation), sin(global_rotation)).normalized() * speed
 		position += real_vel * delta
 		if position.x < 40 or position.x > screen_size.x - 40 or position.y < 100 or position.y > screen_size.y - 40:
 			position -= 20*real_vel * delta
@@ -47,3 +50,8 @@ func handle_rotation(delta):
 
 func _on_rotate_timer_timeout() -> void:
 	can_turn = true
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	position -= 20*real_vel * d
+	position = position.clamp(Vector2(40,100), screen_size-Vector2(40,40))

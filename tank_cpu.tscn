@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxq48nrpnkclb"]
+
+[ext_resource type="PackedScene" uid="uid://yy2tmxnuqn4d" path="res://tank.tscn" id="1_37x0v"]
+[ext_resource type="Script" path="res://tank_cpu.gd" id="2_o5hd7"]
+
+[node name="Tank" instance=ExtResource("1_37x0v")]
+modulate = Color(0.203922, 0.776471, 0.933333, 1)
+script = ExtResource("2_o5hd7")
+player_id = 2
