@@ -2,7 +2,7 @@ extends Sprite2D
 
 @export var player_id = 1
 
-var speed = 30
+var speed = 55 # should move across screen in about 19 seconds
 var screen_size # Size of the game window
 
 var can_turn = true
@@ -25,7 +25,10 @@ func handle_movement(delta: float):
 	if velocity > 0:
 		var real_vel = Vector2(cos(global_rotation), sin(global_rotation)).normalized() * speed
 		position += real_vel * delta
-		position = position.clamp(Vector2.ZERO, screen_size)
+		if position.x < 40 or position.x > screen_size.x - 40 or position.y < 100 or position.y > screen_size.y - 40:
+			position -= 20*real_vel * delta
+		position = position.clamp(Vector2(40,100), screen_size-Vector2(40,40))
+		
 		
 func handle_rotation(delta):
 	var a_vel = 0

@@ -1,7 +1,6 @@
 extends Sprite2D
 @export var Bullet: PackedScene
 
-@export var bullet_speed = 30
 var player_id
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +17,6 @@ func handle_shot():
 
 func shoot():
 	var b = Bullet.instantiate()
-	b.speed = bullet_speed
 	#b.get_node("Sprite2D").texture = bullet_texture
 	b.set_collision_layer_value(owner.player_id + 2, true)
 	owner.owner.add_child(b)

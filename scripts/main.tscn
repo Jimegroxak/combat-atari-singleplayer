@@ -1,12 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfi4m6fdknw38"]
+[gd_scene load_steps=4 format=3 uid="uid://cfi4m6fdknw38"]
 
 [ext_resource type="PackedScene" uid="uid://yy2tmxnuqn4d" path="res://tank.tscn" id="1_qk5rr"]
+[ext_resource type="Texture2D" uid="uid://ct4h2u2jyuwwm" path="res://sprites/SquareTestSprite.png" id="2_mf1t4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7lrf"]
+size = Vector2(8, 7)
 
 [node name="Main" type="Node2D"]
 
 [node name="Tank" parent="." instance=ExtResource("1_qk5rr")]
+position = Vector2(48, 240)
 
-[node name="BulletSpawner" parent="Tank" index="1"]
-bullet_speed = 200
+[node name="Area2D" type="Area2D" parent="Tank"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tank/Area2D"]
+shape = SubResource("RectangleShape2D_t7lrf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(576, 74)
+scale = Vector2(4.56, 0.08)
+texture = ExtResource("2_mf1t4")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(576, 640)
+scale = Vector2(4.56, 0.08)
+texture = ExtResource("2_mf1t4")
+
+[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(8, 360)
+rotation = 1.5708
+scale = Vector2(2.24, 0.08)
+texture = ExtResource("2_mf1t4")
+
+[node name="Sprite2D4" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(1144, 360)
+rotation = 1.5708
+scale = Vector2(2.24, 0.08)
+texture = ExtResource("2_mf1t4")
 
 [editable path="Tank"]
