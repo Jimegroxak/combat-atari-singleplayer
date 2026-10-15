@@ -6,8 +6,9 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="Tank" parent="." instance=ExtResource("1_qk5rr")]
+[node name="Tank" parent="." node_paths=PackedStringArray("other_tank") instance=ExtResource("1_qk5rr")]
 position = Vector2(48, 240)
+other_tank = NodePath("../Tank2")
 
 [node name="StaticBody2D" type="Node2D" parent="."]
 
@@ -33,8 +34,9 @@ rotation = 1.5708
 scale = Vector2(2.24, 0.08)
 texture = ExtResource("2_mf1t4")
 
-[node name="Tank2" parent="." instance=ExtResource("3_1ukdv")]
+[node name="Tank2" parent="." node_paths=PackedStringArray("other_tank") instance=ExtResource("3_1ukdv")]
 position = Vector2(1064, 336)
 rotation = 3.14159
+other_tank = NodePath("../Tank")
 
 [editable path="Tank"]

@@ -1,6 +1,7 @@
 extends Sprite2D
 
 @export var player_id = 1
+@export var other_tank: Node2D
 
 var speed = 55 # should move across screen in about 19 seconds
 var real_vel
@@ -53,5 +54,6 @@ func _on_rotate_timer_timeout() -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	position -= 20*real_vel * d
-	position = position.clamp(Vector2(40,100), screen_size-Vector2(40,40))
+	if not area.is_in_group("bullet"):
+		position -= 20*real_vel * d
+		position = position.clamp(Vector2(40,100), screen_size-Vector2(40,40))

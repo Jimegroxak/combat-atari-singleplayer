@@ -23,8 +23,11 @@ position = Vector2(4, 0)
 script = ExtResource("3_vpirl")
 Bullet = ExtResource("4_krjow")
 
+[node name="ShotTimer" type="Timer" parent="BulletSpawner"]
+
 [node name="Area2D" type="Area2D" parent="."]
 disable_mode = 2
+collision_mask = 5
 script = ExtResource("5_ed8qq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -32,4 +35,5 @@ position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_ig2c7")
 
 [connection signal="timeout" from="RotateTimer" to="." method="_on_rotate_timer_timeout"]
+[connection signal="timeout" from="BulletSpawner/ShotTimer" to="BulletSpawner" method="_on_shot_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

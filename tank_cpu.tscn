@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxq48nrpnkclb"]
+[gd_scene load_steps=4 format=3 uid="uid://bxq48nrpnkclb"]
 
 [ext_resource type="PackedScene" uid="uid://yy2tmxnuqn4d" path="res://tank.tscn" id="1_37x0v"]
 [ext_resource type="Script" path="res://tank_cpu.gd" id="2_o5hd7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xyohs"]
+radius = 22.1723
 
 [node name="Tank" instance=ExtResource("1_37x0v")]
 modulate = Color(0.203922, 0.776471, 0.933333, 1)
 script = ExtResource("2_o5hd7")
 player_id = 2
+
+[node name="Area2D" parent="." index="2"]
+collision_mask = 3
+
+[node name="BulletDetection" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletDetection" index="0"]
+shape = SubResource("CircleShape2D_xyohs")
+
+[connection signal="area_entered" from="BulletDetection" to="." method="_on_bullet_detection_area_entered"]
